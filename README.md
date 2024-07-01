@@ -14,6 +14,10 @@ JavaSocketChat is a simple chat application implemented in Java using sockets. T
   - `common/Message.java`: Defines the Message class used for communication.
   - `server/ChatServerApp.java`: Entry point for the server application.
   - `server/ChatHandlerThread.java`: Handles communication with each client in a separate thread.
+    
+  -   **ClientProject**
+  - `client/MessagesClientApp.java`: Entry point for the client application.
+
 Prerequisites
 - Java Development Kit (JDK) installed
 - Git installed
