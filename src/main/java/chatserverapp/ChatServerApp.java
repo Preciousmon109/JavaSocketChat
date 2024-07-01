@@ -9,24 +9,31 @@ import za.ac.tut.bl.ChatHandlerThread;
 
 public class ChatServerApp {
 	
-	    public static void main(String[] args) {
-	        // TODO code application logic here
-	        ServerSocket s;
-	        Socket socket;
-	        
-	        try {
-	            s = new ServerSocket(9090);
-	            
-	            while(true){
-	                System.out.println("Waiting for client request....");
-	                socket = s.accept();
-	                
-	                ChatHandlerThread ct = new ChatHandlerThread(socket);
-	            }
-	        } catch (IOException ex) {
-	            Logger.getLogger(ChatServerApp.class.getName()).log(Level.SEVERE, null, ex);
-	        }
-	        
-	    }
+	ServerSocket serverSocket = null;
+
+    try {
+        serverSocket = new ServerSocket(9090);
+        System.out.println("Waiting for client request....");
+
+        while (true) {
+            Socket socket = serverSocket.accept();
+            System.out.println("Communication established: " + socket);
+
+            // Create a new thread for each client
+            ChatHandlerThread chatHandler = new ChatHandlerThread(socket);
+            chatHandler.start();
+        }
+    } catch (IOException ex) {
+        Logger.getLogger(ChatServerApp.class.getName()).log(Level.SEVERE, null, ex);
+    } finally {
+        try {
+            if (serverSocket != null) {
+                serverSocket.close();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(ChatServerApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
 	    
 }

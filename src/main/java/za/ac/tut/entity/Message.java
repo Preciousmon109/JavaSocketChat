@@ -1,38 +1,28 @@
 package za.ac.tut.entity;
-import java.util.List;
+
 public class Message {
 
 	private String name;
-    private String msg;
-    private List<String> data;
+    private String text;
 
-    public Message(String name, String msg, List<String> data) {
+    public Message(String name, String text) {
         this.name = name;
-        this.msg = msg;
-        this.data = data;
+        this.text = text;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getText() {
+        return text;
     }
 
-    public String getMsg() {
-        return msg;
+    @Override
+    public String toString() {
+        return "Message from " + name + ": " + text;
     }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public List<String> getData() {
-        return data;
-    }
-
-    public void setData(List<String> data) {
-        this.data = data;
-    }
+    
+    
 }
+
